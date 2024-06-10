@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [Text("Pranav"), Text("Prakash"), Text("Prasanna")]),
+              children: [Text("Pranav"), Text("Prakash")]),
         ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
