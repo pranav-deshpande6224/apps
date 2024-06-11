@@ -1,4 +1,4 @@
-import 'package:first_app/GradientContainer.dart';
+import 'package:first_app/gradient_container.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Color.fromARGB(255, 59, 36, 97),
-        body: GradientContainer(),
+        body: GradientContainer([Colors.amber, Colors.pink],
+            Alignment.bottomLeft, Alignment.topRight),
       ),
     );
   }
 }
-
