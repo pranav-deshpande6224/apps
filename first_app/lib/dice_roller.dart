@@ -2,31 +2,30 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class DiceRoller extends StatefulWidget {
-  final List<String> imageString = [
-    'assets/images/dice-1.png',
-    'assets/images/dice-2.png',
-    'assets/images/dice-3.png',
-    'assets/images/dice-4.png',
-    'assets/images/dice-5.png',
-    'assets/images/dice-6.png'
-  ];
-  DiceRoller({super.key});
+  const DiceRoller({super.key});
 
   @override
   State<DiceRoller> createState() => _DiceRollerState();
 }
 
 class _DiceRollerState extends State<DiceRoller> {
+  var randomNumber = 3;
+  final random = Random();
   void rollDice() {
-  
+    var someValue = random.nextInt(5) + 1;
+    setState(() {
+      randomNumber = someValue;
+    });
   }
+
   @override
   Widget build(BuildContext context) {
+    print('build calling');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/images/dice-1.png',
+          'assets/images/dice-$randomNumber.png',
           width: 200,
         ),
         const SizedBox(
