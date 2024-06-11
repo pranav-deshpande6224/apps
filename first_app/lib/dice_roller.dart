@@ -20,7 +20,6 @@ class _DiceRollerState extends State<DiceRoller> {
 
   @override
   Widget build(BuildContext context) {
-    print('build calling');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
