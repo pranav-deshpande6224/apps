@@ -58,15 +58,25 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summary = getSummaryData();
+    final String numberOfQuestions = questions.length.toString();
+    final numberOfCorrect = summary
+        .where((element) {
+          return (element['correct-answer'] as String) ==
+              (element['marked-answer'] as String);
+        })
+        .length
+        .toString();
     return Center(
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text('You answered 3 out of 6 correctly!'),
+        Text(
+            'You answered $numberOfCorrect out of $numberOfQuestions correctly!'),
         const SizedBox(
           height: 20,
         ),
-        QuestionSummary(getSummaryData()),
+        QuestionSummary(summary),
         const SizedBox(
           height: 20,
         ),
