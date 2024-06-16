@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:quiz_app/Models/quiz_question.dart';
+import 'package:quiz_app/question_summary.dart';
 import 'Data/dummy.dart';
 
 class ResultsScreen extends StatelessWidget {
   final void Function() restart;
   final List<String> answersMarked;
   const ResultsScreen(this.restart, this.answersMarked, {super.key});
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> data = [];
+    for (int i = 0; i < answersMarked.length; i++) {
+      data.add({
+        'question-index': i,
+        'question': questions[i].question,
+        'correct-answer': questions[i].answers[0],
+        'marked-answer': answersMarked[i]
+      });
+    }
+    return data;
+  }
+
   Widget finalResults(QuizQuestion obj) {
     return Padding(
       padding: const EdgeInsets.only(
@@ -53,29 +66,7 @@ class ResultsScreen extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: SizedBox(
-            width: double.infinity,
-            height: 400,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ...questions.map((element) {
-                    return Column(
-                      children: [
-                        finalResults(element),
-                        const SizedBox(
-                          height: 10,
-                        )
-                      ],
-                    );
-                  })
-                ],
-              ),
-            ),
-          ),
-        ),
+        QuestionSummary(getSummaryData()),
         const SizedBox(
           height: 20,
         ),
