@@ -68,24 +68,25 @@ class ResultsScreen extends StatelessWidget {
         .length
         .toString();
     return Center(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-            'You answered $numberOfCorrect out of $numberOfQuestions correctly!'),
-        const SizedBox(
-          height: 20,
-        ),
-        QuestionSummary(summary),
-        const SizedBox(
-          height: 20,
-        ),
-        ElevatedButton.icon(
-          onPressed: restart,
-          label: const Text('Restart Quiz'),
-          icon: const Icon(Icons.restart_alt),
-        )
-      ],
-    ));
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+              'You answered $numberOfCorrect out of $numberOfQuestions correctly!'),
+          const SizedBox(
+            height: 20,
+          ),
+          QuestionSummary(summary),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton.icon(
+            onPressed: restart,
+            label: const Text('Restart Quiz'),
+            icon: const Icon(Icons.restart_alt),
+          )
+        ],
+      ),
+    );
   }
 }
