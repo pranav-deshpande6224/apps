@@ -36,6 +36,7 @@ class _ExpensesState extends State<Expenses> {
     // Here context using is the global context
     // if undo is pressed then it is added then again is added to the list and
     // show in the UI
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         duration: const Duration(seconds: 3),
@@ -45,16 +46,16 @@ class _ExpensesState extends State<Expenses> {
           onPressed: () {
             setState(() {
               userRegisteredExpenses.insert(
-              index,
-              expense,
-            );
+                index,
+                expense,
+              );
             });
           },
         ),
       ),
     );
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
