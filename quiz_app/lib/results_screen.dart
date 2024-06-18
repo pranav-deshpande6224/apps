@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/Models/quiz_question.dart';
 import 'package:quiz_app/question_summary.dart';
 import 'Data/dummy.dart';
 
@@ -20,42 +19,6 @@ class ResultsScreen extends StatelessWidget {
     return data;
   }
 
-  Widget finalResults(QuizQuestion obj) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 10,
-        right: 10,
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5), // Adjust the radius as needed
-        ),
-        child: SizedBox(
-          width: double.infinity,
-          height: 90,
-          child: Column(
-            children: [
-              Text(
-                obj.question,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                obj.answers[0],
-                style: const TextStyle(color: Color.fromARGB(255, 92, 185, 96)),
-              ),
-              Text(answersMarked[0]),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final summary = getSummaryData();
@@ -69,10 +32,17 @@ class ResultsScreen extends StatelessWidget {
         .toString();
     return Center(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-              'You answered $numberOfCorrect out of $numberOfQuestions correctly!'),
+            'You answered $numberOfCorrect out of $numberOfQuestions questions correctly!',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
           const SizedBox(
             height: 20,
           ),
