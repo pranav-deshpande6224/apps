@@ -52,8 +52,16 @@ class ResultsScreen extends StatelessWidget {
           ),
           ElevatedButton.icon(
             onPressed: restart,
-            label: const Text('Restart Quiz'),
-            icon: const Icon(Icons.restart_alt),
+            label: const Text(
+              'Restart Quiz',
+              style: TextStyle(
+                color: Color.fromARGB(255, 32, 30, 30),
+              ),
+            ),
+            icon: const Icon(
+              Icons.restart_alt,
+              color: Color.fromARGB(255, 32, 30, 30),
+            ),
           )
         ],
       ),
