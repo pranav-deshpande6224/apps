@@ -17,13 +17,13 @@ class _ExpensesState extends State<Expenses> {
       title: "To Hyderabad",
       amount: 7000,
       dateTime: DateTime.now(),
-      category: Category.travel,
+      category: MultipleCategory.travel,
     ),
     Expense(
       title: "outing",
       amount: 2000,
       dateTime: DateTime.now(),
-      category: Category.food,
+      category: MultipleCategory.food,
     )
   ];
   void openModalOverlay(BuildContext context) {

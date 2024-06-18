@@ -6,11 +6,11 @@ import 'package:intl/intl.dart';
 const uuid = Uuid();
 final dateFormatter = DateFormat.yMd();
 
-const Map<Category, IconData> categoryIcons = {
-  Category.food: Icons.lunch_dining,
-  Category.leisure: Icons.movie,
-  Category.travel: Icons.flight,
-  Category.work: Icons.work
+const Map<MultipleCategory, IconData> categoryIcons = {
+  MultipleCategory.food: Icons.lunch_dining,
+  MultipleCategory.leisure: Icons.movie,
+  MultipleCategory.travel: Icons.flight,
+  MultipleCategory.work: Icons.work
 };
 
 class Expense {
@@ -18,7 +18,7 @@ class Expense {
   final String title;
   final double amount;
   final DateTime dateTime;
-  final Category category;
+  final MultipleCategory category;
   Expense(
       {required this.title,
       required this.amount,

@@ -1,5 +1,5 @@
 // Inside this enum we list our enum values
-enum Category {
+enum MultipleCategory {
   leisure,
   travel,
   food,
