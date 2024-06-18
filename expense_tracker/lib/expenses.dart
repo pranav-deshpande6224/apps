@@ -26,12 +26,19 @@ class _ExpensesState extends State<Expenses> {
       category: MultipleCategory.food,
     )
   ];
+
   void openModalOverlay(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (ctx) {
-          return const NewExpense();
+          return NewExpense(addExpense);
         });
+  }
+
+  void addExpense(Expense expense) {
+    setState(() {
+      userRegisteredExpenses.add(expense);
+    });
   }
 
   @override
