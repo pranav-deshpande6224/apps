@@ -39,7 +39,7 @@ class _ExpensesState extends State<Expenses> {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 2),
         content: const Text('Your Item Deleted'),
         action: SnackBarAction(
           label: 'Undo',
@@ -55,7 +55,7 @@ class _ExpensesState extends State<Expenses> {
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
