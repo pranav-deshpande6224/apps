@@ -1,6 +1,6 @@
 import 'package:expense_tracker/Models/expense.dart';
 import 'package:flutter/material.dart';
-import 'package:expense_tracker/Models/category.dart';
+
 
 class ExpenseItem extends StatelessWidget {
   final Expense expenseObj;

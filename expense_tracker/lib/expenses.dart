@@ -1,4 +1,5 @@
 import 'package:expense_tracker/Widgets/expenses_listview.dart';
+import 'package:expense_tracker/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/Models/expense.dart';
 import 'Models/category.dart';
@@ -25,36 +26,42 @@ class _ExpensesState extends State<Expenses> {
       category: Category.food,
     )
   ];
+  void openModalOverlay(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return const NewExpense();
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text(
-            'Flutter Expense Tracker',
-            style: TextStyle(color: Colors.white),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text(
+          'Flutter Expense Tracker',
+          style: TextStyle(color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+            color: Colors.white,
+            onPressed: () {
+              openModalOverlay(context);
+            },
+            icon: const Icon(Icons.add),
           ),
-          actions: [
-            IconButton(
-              color: Colors.white,
-              onPressed: () {},
-              icon: const Icon(Icons.add),
+        ],
+      ),
+      body: Column(
+        children: [
+          const Text('Chart'),
+          Expanded(
+            child: ExpensesListview(
+              userExpenses: userRegisteredExpenses,
             ),
-          ],
-        ),
-        body: Column(
-          children: [
-            const Text('Chart'),
-            Expanded(
-              child: ExpensesListview(
-                userExpenses: userRegisteredExpenses,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
