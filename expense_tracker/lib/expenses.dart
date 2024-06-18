@@ -2,43 +2,57 @@ import 'package:expense_tracker/Widgets/expenses_listview.dart';
 import 'package:expense_tracker/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/Models/expense.dart';
-import 'Models/category.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
-
   @override
   State<Expenses> createState() => _ExpensesState();
 }
 
 class _ExpensesState extends State<Expenses> {
-  final List<Expense> userRegisteredExpenses = [
-    Expense(
-      title: "To Hyderabad",
-      amount: 7000,
-      dateTime: DateTime.now(),
-      category: MultipleCategory.travel,
-    ),
-    Expense(
-      title: "outing",
-      amount: 2000,
-      dateTime: DateTime.now(),
-      category: MultipleCategory.food,
-    )
-  ];
+  final List<Expense> userRegisteredExpenses = [];
 
   void openModalOverlay(BuildContext context) {
     showModalBottomSheet(
+        // modal overlay occupy entire space
+        isScrollControlled: true,
         context: context,
         builder: (ctx) {
-          return NewExpense(addExpense);
+          return NewExpense(_addExpense);
         });
   }
 
-  void addExpense(Expense expense) {
+  void _addExpense(Expense expense) {
     setState(() {
       userRegisteredExpenses.add(expense);
     });
+  }
+
+  void _deleteExpense(Expense expense) {
+    final index = userRegisteredExpenses.indexOf(expense);
+    setState(() {
+      userRegisteredExpenses.remove(expense);
+    });
+    // Here context using is the global context
+    // if undo is pressed then it is added then again is added to the list and
+    // show in the UI
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 3),
+        content: const Text('Your Item Deleted'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              userRegisteredExpenses.insert(
+              index,
+              expense,
+            );
+            });
+          },
+        ),
+      ),
+    );
   }
 
   @override
@@ -60,16 +74,28 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          const Text('Chart'),
-          Expanded(
-            child: ExpensesListview(
-              userExpenses: userRegisteredExpenses,
+      body: userRegisteredExpenses.isEmpty
+          ? const Center(
+              child: Text(
+                'Please Add Your Expenses',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : Column(
+              children: [
+                const Text('Chart'),
+                Expanded(
+                  child: ExpensesListview(
+                    userExpenses: userRegisteredExpenses,
+                    removeItem: _deleteExpense,
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

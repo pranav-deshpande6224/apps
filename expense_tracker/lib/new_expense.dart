@@ -6,7 +6,7 @@ import 'Models/category.dart';
 final dateFormatter = DateFormat.yMd();
 
 class NewExpense extends StatefulWidget {
-  final void Function(Expense) newExpense;
+  final void Function(Expense expense) newExpense;
   const NewExpense(this.newExpense, {super.key});
   @override
   State<NewExpense> createState() {
@@ -86,7 +86,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 50, 16, 16),
       child: Column(
         children: [
           TextField(
