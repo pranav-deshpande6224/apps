@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/Models/meal.dart';
+import 'package:meals_app/Widgets/meal_item.dart';
 
 // if you click on that category
 // that category title is on the appbar
@@ -40,9 +41,8 @@ class MealsScreen extends StatelessWidget {
           : ListView.builder(
               itemCount: meals.length,
               itemBuilder: (ctx, index) {
-                return Text(
-                  meals[index].mealTitle,
-                  style: const TextStyle(color: Colors.white),
+                return MealItem(
+                  meal: meals[index],
                 );
               }),
     );
