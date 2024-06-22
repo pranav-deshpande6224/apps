@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/Models/meal.dart';
+import 'package:meals_app/Screens/meal_details_screen.dart';
 import 'package:meals_app/Widgets/meal_item.dart';
 
 // if you click on that category
@@ -13,6 +14,11 @@ class MealsScreen extends StatelessWidget {
   });
   final String title;
   final List<Meal> meals;
+
+  void _toMealDetailScreen(BuildContext context, Meal meal ){
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> MealDetailsScreen(meal: meal)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +49,7 @@ class MealsScreen extends StatelessWidget {
               itemBuilder: (ctx, index) {
                 return MealItem(
                   meal: meals[index],
+                  toDetailScreen: _toMealDetailScreen,
                 );
               }),
     );
