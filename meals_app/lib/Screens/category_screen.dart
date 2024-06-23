@@ -7,7 +7,8 @@ import 'package:meals_app/Screens/meals_screen.dart';
 import 'package:meals_app/Widgets/category_grid_view_element.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  const CategoryScreen({super.key, required this.favourite});
+  final void Function(Meal meal) favourite;
 
   void _selectedCategory(BuildContext context, Category category) {
     final List<Meal> categoryMeals = dummyMeals.where((element) {
@@ -17,18 +18,14 @@ class CategoryScreen extends StatelessWidget {
       return MealsScreen(
         title: category.title,
         meals: categoryMeals,
+        addRemoveFavourite: favourite,
       );
     }));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 8,
-        title: const Text('Pick Your Category'),
-      ),
-      body: GridView(
+    return GridView(
         padding: const EdgeInsets.only(
           left: 15,
           right: 15,
@@ -45,7 +42,6 @@ class CategoryScreen extends StatelessWidget {
             categorySelected: _selectedCategory,
           );
         }).toList(),
-      ),
     );
   }
 }
