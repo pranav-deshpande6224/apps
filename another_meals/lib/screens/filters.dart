@@ -54,15 +54,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
       //     }
       //   },
       // ),
-      body: WillPopScope(
-        onWillPop: () async {
+      body: PopScope(
+        canPop: false,
+        onPopInvoked: (value) {
+          if (value) return;
           Navigator.of(context).pop({
             Filter.glutenFree: _glutenFreeFilterSet,
             Filter.lactoseFree: _lactoseFreeFilterSet,
             Filter.vegetarian: _vegetarianFilterSet,
             Filter.vegan: _veganFilterSet,
           });
-          return false;
         },
         child: Column(
           children: [
@@ -73,17 +74,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   _glutenFreeFilterSet = isChecked;
                 });
               },
-              title: Text(
+              title: const Text(
                 'Gluten-free',
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
-              subtitle: Text(
+              subtitle: const Text(
                 'Only include gluten-free meals.',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
               contentPadding: const EdgeInsets.only(left: 34, right: 22),
@@ -95,17 +90,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   _lactoseFreeFilterSet = isChecked;
                 });
               },
-              title: Text(
+              title: const Text(
                 'Lactose-free',
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
-              subtitle: Text(
+              subtitle: const Text(
                 'Only include lactose-free meals.',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
               contentPadding: const EdgeInsets.only(left: 34, right: 22),
@@ -117,17 +106,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   _vegetarianFilterSet = isChecked;
                 });
               },
-              title: Text(
+              title: const Text(
                 'Vegetarian',
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
-              subtitle: Text(
+              subtitle: const Text(
                 'Only include vegetarian meals.',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
               contentPadding: const EdgeInsets.only(left: 34, right: 22),
@@ -139,17 +122,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   _veganFilterSet = isChecked;
                 });
               },
-              title: Text(
+              title: const Text(
                 'Vegan',
-                style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
-              subtitle: Text(
+              subtitle: const Text(
                 'Only include vegan meals.',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground,
-                    ),
               ),
               activeColor: Theme.of(context).colorScheme.tertiary,
               contentPadding: const EdgeInsets.only(left: 34, right: 22),

@@ -6,11 +6,9 @@ class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
-    required this.onToggleFavorite,
   });
 
   final Meal meal;
-  final void Function(Meal meal) onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class MealDetailsScreen extends StatelessWidget {
         appBar: AppBar(title: Text(meal.title), actions: [
           IconButton(
             onPressed: () {
-              onToggleFavorite(meal);
+              
             },
             icon: const Icon(Icons.star),
           )
@@ -44,9 +42,7 @@ class MealDetailsScreen extends StatelessWidget {
               for (final ingredient in meal.ingredients)
                 Text(
                   ingredient,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground,
-                      ),
+                  
                 ),
               const SizedBox(height: 24),
               Text(
@@ -66,9 +62,6 @@ class MealDetailsScreen extends StatelessWidget {
                   child: Text(
                     step,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Theme.of(context).colorScheme.onBackground,
-                        ),
                   ),
                 ),
             ],
