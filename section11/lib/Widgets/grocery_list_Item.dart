@@ -9,8 +9,8 @@ class GroceryListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Container(
-        height: 20,
-        width: 20,
+        height: 24,
+        width: 24,
         color: item.category.color,
       ),
       title: Text(
