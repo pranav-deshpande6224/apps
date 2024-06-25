@@ -13,17 +13,20 @@ class FavouriteMealNotifier extends StateNotifier<List<Meal>> {
   //methods to change the state
   // without editing the existing state
 
-  void addRemoveMeal(Meal meal) {
+  bool addRemoveMeal(Meal meal) {
     if (!state.contains(meal)) {
       // new state is provided
       state = [...state, meal];
+      return true;
     } else {
       // don't use the add and remove method
       state = state.where((m) => m.id != meal.id).toList();
+      return false;
     }
   }
 }
 
-final favouriteMealsProvider = StateNotifierProvider<FavouriteMealNotifier, List<Meal>>((ref) {
+final favouriteMealsProvider =
+    StateNotifierProvider<FavouriteMealNotifier, List<Meal>>((ref) {
   return FavouriteMealNotifier();
 });
