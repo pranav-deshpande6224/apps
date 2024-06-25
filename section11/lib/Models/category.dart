@@ -5,11 +5,17 @@ enum Categories {
   fruit,
   meat,
   dairy,
-  carbs
+  carbs,
+  sweets,
+  spices,
+  convinience,
+  hygiene,
+  other
+
 }
 
 class Category {
-  String title;
-  Color color;
-  Category({required this.title, required this.color});
+  final String title;
+ final Color color;
+  const Category({required this.title, required this.color});
 }
