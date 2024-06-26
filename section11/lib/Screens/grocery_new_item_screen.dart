@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:section11/Data/dummy_categories.dart';
 import 'package:section11/Models/category.dart';
+import 'package:http/http.dart' as http;
 import 'package:section11/Models/grocery_item.dart';
-
 // when handling the form or handling the textfield
 // please go with stateful widget
 // for the ListView, grid view
@@ -21,16 +22,37 @@ class _GroceryNewItemScreenState extends State<GroceryNewItemScreen> {
   var _enteredName = '';
   var _quantity = 1;
   var _initialItem = dummyCategories[Categories.vegetable];
-  void _saveData() {
+  var addedData = false;
+
+  void _saveData() async {
     final value = _key.currentState!.validate();
     if (!value) return;
     _key.currentState!.save();
-    Navigator.of(context).pop(GroceryItem(
-      id: DateTime.now().toString(),
-      name: _enteredName,
-      quantity: _quantity,
-      category: _initialItem!,
-    ));
+    setState(() {
+      addedData = true;
+    });
+    final url = Uri.https(
+        'flutter-2ef6c-default-rtdb.firebaseio.com', 'shopping-list.json');
+    final result = await http.post(url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'name': _enteredName,
+          'quantity': _quantity,
+          'category': _initialItem!.title,
+        }));
+    // i'm getting the response the unique id assigned to that document in firebase
+    if (!context.mounted) return;
+    if (result.statusCode == 200) {
+      final Map<String, dynamic> decode = json.decode(result.body);
+      final id = decode['name'] as String;
+      Navigator.of(context).pop(GroceryItem(
+          id: id,
+          name: _enteredName,
+          quantity: _quantity,
+          category: _initialItem!));
+    }
   }
 
   @override
@@ -137,12 +159,22 @@ class _GroceryNewItemScreenState extends State<GroceryNewItemScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                      onPressed: () {
-                        _key.currentState!.reset();
-                      },
+                      onPressed: addedData
+                          ? null
+                          : () {
+                              _key.currentState!.reset();
+                            },
                       child: const Text('Reset')),
                   ElevatedButton(
-                      onPressed: _saveData, child: const Text('Add Item'))
+                    onPressed: addedData ? null : _saveData,
+                    child: addedData
+                        ? const SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: CircularProgressIndicator(),
+                          )
+                        : const Text('Add Item'),
+                  )
                 ],
               )
             ],
