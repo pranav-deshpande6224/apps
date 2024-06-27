@@ -35,8 +35,8 @@ class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
         elevation: 10,
         title: const Text('ADD NEW PLACE'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(12),
         child: Form(
           key: _formKey,
           child: Column(
