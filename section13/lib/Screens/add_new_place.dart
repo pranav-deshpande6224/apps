@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:section13/Providers/place_provider.dart';
 import 'package:section13/Models/place.dart';
+import 'package:section13/Widgets/image_input.dart';
 
 class AddNewPlace extends ConsumerStatefulWidget {
   const AddNewPlace({super.key});
@@ -59,6 +60,10 @@ class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
                   _newPlace = value!;
                 },
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              const ImageInput(),
               const SizedBox(
                 height: 20,
               ),

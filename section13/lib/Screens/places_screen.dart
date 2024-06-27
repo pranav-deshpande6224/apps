@@ -35,7 +35,7 @@ class PlacesScreen extends ConsumerWidget {
               child: ListView.builder(
                 itemCount: placesList.length,
                 itemBuilder: (ctx, index) {
-                  return InkWell(
+                  return ListTile(
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -47,12 +47,10 @@ class PlacesScreen extends ConsumerWidget {
                         ),
                       );
                     },
-                    child: ListTile(
-                      title: Text(
-                        placesList[index].placeTitle,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
+                    title: Text(
+                      placesList[index].placeTitle,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                   );
                 },
