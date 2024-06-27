@@ -14,7 +14,7 @@ class App extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'favourite Places',
-      home: Places(),
+      home: PlacesScreen(),
     );
   }
 }

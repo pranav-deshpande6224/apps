@@ -4,8 +4,8 @@ import 'package:section13/Providers/place_provider.dart';
 import 'package:section13/Screens/add_new_place.dart';
 import 'package:section13/Screens/place_detail_screen.dart';
 
-class Places extends ConsumerWidget {
-  const Places({super.key});
+class PlacesScreen extends ConsumerWidget {
+  const PlacesScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,14 +47,11 @@ class Places extends ConsumerWidget {
                         ),
                       );
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
+                    child: ListTile(
+                      title: Text(
                         placesList[index].placeTitle,
                         style: const TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                     ),
                   );
